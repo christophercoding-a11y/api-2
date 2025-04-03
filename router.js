@@ -45,9 +45,11 @@ router.get('/hero/:id', (req, res)=> {
     fetch(url)
         .then(res => res.json())
         .then(data => {
+
+            const heroName = data.hero_name != null ? data.hero_name : `${data.first_name} ${data.last_name}`
             res.render('pages/heroSingle', {
-        title: data.hero_name,
-        name: data.hero_name,
+        title: heroName,
+        name: heroName,
         data
     })
     })

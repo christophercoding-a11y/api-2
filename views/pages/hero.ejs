@@ -4,10 +4,18 @@
         <div class="row">
             <% data.forEach(item => { %>
                 <div class="col-md-2">
-                    <div class="figure">
+                    <figure class="figure">
                         <img src="https://placehold.co/200x250"alt="placeholder img" class="img-fluid image" />
-                        <figcaption class="figcaption"><%= item.hero_name%></figcaption>
-                    </div>
+                        <figcaption class="figcaption">
+                            <a href="/hero/<%= item.hero_id %>">
+                                <% if (item.hero_name != null)  { %>
+                                    <%= item.hero_name %>
+                                <% } else { %>
+                                    <%=item.first_name %> <%= item.last_name %>
+                                <% } %>
+                            </a>
+                        </figcaption>
+                    </figure>
                 </div>
             <%}) %>
         </div>
