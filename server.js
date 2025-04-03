@@ -27,7 +27,7 @@ server.get('/', (req, res)=> {
 
 server.get('/api/hero', (req, res)=> {
     con.query(
-        `select h.hero_id, h.first_name, h.last_name, h.alias, f.franchise, s.species, h.first_app
+        `select h.hero_id, h.hero_name, h.first_name, h.last_name, h.alias, f.franchise, s.species, h.first_app
         from hero h
         join franchise f using (franchise_id)
         join species s using (species_id)
@@ -120,7 +120,7 @@ server.get('/api/team', (req, res)=> {
 server.get('/api/hero/:id', (req, res)=> {
     const id = req.params.id
     con.query(
-        `select h.hero_id, h.first_name, h.last_name, h.alias, f.franchise, s.species, h.first_app
+        `select h.hero_id, h.hero_name, h.first_name, h.last_name, h.alias, f.franchise, s.species, h.first_app
         from hero h
         join franchise f using (franchise_id)
         join species s using (species_id)

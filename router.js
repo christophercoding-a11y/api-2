@@ -22,18 +22,45 @@ router.get('/home', (req, res)=> {
     })
 })
 
-router.get('/heroes', (req, res)=> {
+router.get('/hero', (req, res)=> {
+    const url = `http://localhost:${PORT}/api/hero`
 
+    fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            res.render('pages/hero', {
+                title: 'All Heroes',
+                name: 'All Heroes',
+                data
+            })
+        })
+})
+
+// single pages
+router.get('/hero/:id', (req, res)=> {
+    const id = req.params.id
+
+    const url = `http://localhost:${PORT}/api/hero/${id}`
+
+    fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            res.render('pages/heroSingle', {
+        title: data.hero_name,
+        name: data.hero_name,
+        data
+    })
+    })
 })
 
 // Error page
-router.get('*', (req, res)=> {
-    if (req.url == '/favicon.ico/') {
-        res.end()
-    } else {
-        res.send('<h1>404 Error</h1>')
-    }
-})
+// router.get('*', (req, res)=> {
+//     if (req.url == '/favicon.ico/') {
+//         res.end()
+//     } else {
+//         res.send('<h1>404 Error</h1>')
+//     }
+// })
 
 // 2. Export router
 module.exports = router
