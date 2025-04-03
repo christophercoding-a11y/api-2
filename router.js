@@ -39,8 +39,15 @@ router.get('/hero', (req, res)=> {
 // single pages
 router.get('/hero/:id', (req, res)=> {
     const id = req.params.id
+    let count
 
     const url = `http://localhost:${PORT}/api/hero/${id}`
+
+    const url2 = `http://localhost:${PORT}/api/hero/`
+
+    fetch(url2)
+        .then(res => res.json())
+        .then(data => count = data.length)
 
     fetch(url)
         .then(res => res.json())
@@ -50,7 +57,8 @@ router.get('/hero/:id', (req, res)=> {
             res.render('pages/heroSingle', {
         title: heroName,
         name: heroName,
-        data
+        data,
+        count
     })
     })
 })

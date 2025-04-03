@@ -3,7 +3,21 @@
 
 <main class="main" id="heroSingleMain">
     <div class="container">
-        
+        <div class="row">
+            <div class="col-8">
+                <img src="https://placehold.co/450x550"alt="placeholder img" class="img-fluid image" />
+            </div>
+            <div class="col-4">
+                <nav class="nav" id="pageNav">
+                    <% if (data.hero_id > 1) { %>
+                        <a href="/hero/<%= data.hero_id - 1 %>" class="nav-link">prev</a>
+                    <%} %>
+                    <% if (data.hero_id < count) { %>
+                        <a href="/hero/<%= data.hero_id + 1 %>" class="nav-link">next</a>
+                    <% } %>
+                </nav>
+            </div>
+        </div>
     </div>
 </main>
 
